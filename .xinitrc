@@ -1,4 +1,5 @@
 ~/wm/slstatus/slstatus &
+setxkbmap pl,ru,ua -option "grp:alt_shift_toggle" &
 redshift -P -O 4500 & 
 xinput disable 13 &
 flameshot &
