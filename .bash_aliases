@@ -7,7 +7,7 @@ alias pd='pkill Discord'
 
 #python
 alias act='source venv/bin/activate'
-alias dact='deactivate'
+alias deact='deactivate'
 
 # pacman
 alias spu='sudo pacman -Syu'
@@ -46,18 +46,25 @@ alias mci='sudo make clean install'
 alias netrestart='systemctl restart NetworkManager'
 
 # git
-alias clone='git clone'
-alias gits='git status'
-alias branch='git branch'
-alias chout='git checkout'
-alias gitap='git apply'
-alias comm='git commit'
-alias merge='git merge'
-alias gitad='git add'
+alias gclone='git clone'
+alias gstat='git status'
+alias gbranch='git branch'
+alias gchout='git checkout'
+alias gapply='git apply'
+alias gcomm='git commit'
+alias gmerge='git merge'
+alias gadd='git add'
 alias gdiff='git diff'
+alias glog='git log --oneline'
+
 
 # network
 alias ncus='nmcli c up Sergeeva'
+alias ncu='nmcli c up'
+alias ncds='nmcli c down Sergeeva'
+alias ncd='nmcli c down'
+alias nscan='nmcli device wifi list'
+alias ncon='nmcli --ask device wifi connect'
 
 # web
 alias get='curl -i'
