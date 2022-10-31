@@ -1,9 +1,7 @@
 # terminal
-alias ls='ls --color=auto'
+alias l='ls --color=auto'
 alias la='ls -la'
-
-#pkill
-alias pd='pkill Discord'
+alias c='clear'
 
 #python
 alias act='source venv/bin/activate'
@@ -12,14 +10,23 @@ alias deact='deactivate'
 # pacman
 alias spu='sudo pacman -Syu'
 alias sps='sudo pacman -Sy'
+alias spss='sudo pacman -Ss'
 alias sp='sudo pacman -S'
 alias spr='sudo pacman -Rs'
 alias spc='sudo pacman -Sc'
 alias spcc='sudo pacman -Scc'
 alias spi='pacman -Qs'
 alias spf='sudo pacman -Fy'
+alias sprd='sudo pacman -Rs $(pacman -Qdtq)'
 alias yrs='yay -Rs'
 alias ys='yay -S'
+
+#mount
+alias mountusb='udiskctl mount -b /dev/sda1'
+alias unmountusb='udiskctl unmount -b /dev/sda1'
+
+#disk
+alias cfdiskn='sudo cfdisk /dev/nvme0n1'
 
 # open files
 alias nv='nvim'
@@ -44,6 +51,11 @@ alias mci='sudo make clean install'
 
 # services
 alias netrestart='systemctl restart NetworkManager'
+alias systart='sudo systemctl start'
+alias systop='sudo systemctl stop'
+alias sysen='sudo systemctl enable'
+alias systatus='sudo systemctl status'
+alias sysrestart='sudo systemctl restart'
 
 # git
 alias gclone='git clone'

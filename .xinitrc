@@ -3,8 +3,8 @@ setxkbmap pl,ru,ua -option "grp:alt_shift_toggle" &
 redshift -P -O 4500 & 
 xinput disable 13 &
 flameshot &
-xrandr --output HDMI-0 --primary --mode 1920x1080 --output eDP-1-1 --mode 1920x1080 --below HDMI-0 --auto &
-#xrandr --output eDP-1-1 --auto &
+~/.scripts/monitor.sh
+amixer sset Capture toggle &
 while true; do
     # Log stderror to a file 
     dwm 2> ~/.dwm.log
