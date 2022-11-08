@@ -72,7 +72,8 @@ alias gmerge='git merge'
 alias gadd='git add'
 alias gdiff='git diff'
 alias glog='git log --oneline'
-
+alias gpush='git push'
+alias gpull='git pull'
 
 # network
 alias ncus='nmcli c up Sergeeva'
