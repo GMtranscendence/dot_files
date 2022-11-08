@@ -9,7 +9,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'mattn/emmet-vim'
     "Indent line"
     Plug 'Yggdroot/indentLine'
-    "Auto suggestions"
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " Autocompletion"
+    Plug 'ycm-core/YouCompleteMe'
 call plug#end()
 

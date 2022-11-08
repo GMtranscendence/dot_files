@@ -1,11 +1,15 @@
 # terminal
-alias l='ls --color=auto'
-alias la='ls -la'
+alias ls='ls --color=auto'
+alias l='ls'
+alias la='l -la'
 alias c='clear'
 
 #python
 alias act='source venv/bin/activate'
 alias deact='deactivate'
+alias py='python'
+alias venv='python -m venv venv'
+alias pipi='pip install'
 
 # pacman
 alias spu='sudo pacman -Syu'
@@ -22,8 +26,8 @@ alias yrs='yay -Rs'
 alias ys='yay -S'
 
 #mount
-alias mountusb='udiskctl mount -b /dev/sda1'
-alias unmountusb='udiskctl unmount -b /dev/sda1'
+alias mountusb='udisksctl mount -b /dev/sda1'
+alias unmountusb='udisksctl unmount -b /dev/sda1'
 
 #disk
 alias cfdiskn='sudo cfdisk /dev/nvme0n1'

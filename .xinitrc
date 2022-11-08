@@ -1,10 +1,9 @@
 ~/wm/slstatus/slstatus &
 setxkbmap pl,ru,ua -option "grp:alt_shift_toggle" &
 redshift -P -O 4500 & 
-xinput disable 13 &
 flameshot &
 ~/.scripts/monitor.sh
-amixer sset Capture toggle &
+~/.scripts/mouse.sh &
 while true; do
     # Log stderror to a file 
     dwm 2> ~/.dwm.log
