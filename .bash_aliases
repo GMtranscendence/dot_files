@@ -8,8 +8,9 @@ alias c='clear'
 alias act='source venv/bin/activate'
 alias deact='deactivate'
 alias py='python'
-alias venv='python -m venv venv'
+alias venv='python -m venv venv; pip install neovim > /dev/null'
 alias pipi='pip install'
+alias pyserver='python -m http.server'
 
 # pacman
 alias spu='sudo pacman -Syu'
@@ -77,11 +78,16 @@ alias gpull='git pull'
 
 # network
 alias ncus='nmcli c up Sergeeva'
+alias ncuh='nmcli c up Hotspot'
+alias ncue='nmcli c up Ether'
 alias ncu='nmcli c up'
 alias ncds='nmcli c down Sergeeva'
+alias ncdh='nmcli c down Hotspot'
+alias ncde='nmcli c down Ether'
 alias ncd='nmcli c down'
 alias nscan='nmcli device wifi list'
-alias ncon='nmcli --ask device wifi connect'
+alias nconw='nmcli --ask device wifi connect'
+alias ncone='nmcli --ask device ethernet connect'
 
 # web
 alias get='curl -i'

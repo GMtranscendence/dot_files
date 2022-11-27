@@ -7,7 +7,8 @@
 
 source ~/.bash_aliases
 wmname LG3D
-export PATH=/home/blank/.scripts:$PATH
+export PATH=$HOME/.scripts:$PATH
+export NETHACKOPTIONS="$HOME/.config/nethack/nethackrc"
 
 # colors
 NAVY="\[$(tput setaf 45)\]"

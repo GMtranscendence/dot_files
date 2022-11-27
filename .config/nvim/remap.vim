@@ -24,10 +24,18 @@ nnoremap [ viw<esc>a]<esc>hbi[<esc>lel
 nnoremap { viw<esc>a}<esc>hbi{<esc>lel
 nnoremap ( viw<esc>a)<esc>hbi(<esc>lel
 nnoremap # 0i#<esc>
-nnoremap <Up> kdd
-nnoremap <Down> jdd
+nnoremap H 0
+nnoremap L $
+nnoremap K gg
+nnoremap J G
+nnoremap <c-j> gJ
+nnoremap <c-k> kgJ
+nnoremap <c-h> kdd
+nnoremap <c-l> jddk
 
 "insert mode"
+inoremap \e' '
+inoremap <c-d> <esc>ddi
 inoremap jk <esc>
 inoremap <c-u> <esc>2lbviwUi
 inoremap <c-w> <esc>2lbviwdi
@@ -43,7 +51,7 @@ noremap <tab> >>
 noremap <s-tab> <<
 
 "initrc"
-nnoremap <leader>sev :source ~/.config/nvim/remap.vim<cr>
+nnoremap <leader>sv :source ~/.config/nvim/remap.vim<cr>
 nnoremap <leader>ev :vsplit ~/.config/nvim/remap.vim<cr>
 nnoremap <leader>co :vsplit ~/.config/nvim/config.vim<cr>
 nnoremap <leader>pl :vsplit ~/.config/nvim/plugins.vim<cr>
@@ -51,7 +59,7 @@ nnoremap <leader>pl :vsplit ~/.config/nvim/plugins.vim<cr>
 nnoremap <c-s> :w<cr> :!xdotool search --onlyvisible --class Firefox key F5<cr><cr>
 
 "abbrev"
-iabbrev __name if __name__ == <c-v>'__main__<c-v>':<cr><tab>pass
+iabbrev __name if __name__ == <c-v>'__main__<c-v>':<cr><tab>main(<right>
 
 "autocmd"
 autocmd FileType python nnoremap <buffer> <leader>c I#<esc>
