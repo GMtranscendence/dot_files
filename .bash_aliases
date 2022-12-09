@@ -1,8 +1,24 @@
 # terminal
 alias ls='ls --color=auto'
 alias l='ls'
-alias la='l -la'
+alias ll='ls -lh'
+alias lls='ls -lsh'
+alias la='l -lAh'
 alias c='clear'
+repp(){
+	range=$(seq $1)
+	shift 1
+	for i in $range; do
+		"$@" &
+	done
+}
+rep(){
+	range=$(seq $1)
+	shift 1
+	for i in $range; do
+		"$@"
+	done
+}
 
 #python
 alias act='source venv/bin/activate'
@@ -20,11 +36,22 @@ alias sp='sudo pacman -S'
 alias spr='sudo pacman -Rs'
 alias spc='sudo pacman -Sc'
 alias spcc='sudo pacman -Scc'
-alias spi='pacman -Qs'
+alias spi='pacman -Qi'
+alias spqs='pacman -Qs'
 alias spf='sudo pacman -Fy'
 alias sprd='sudo pacman -Rs $(pacman -Qdtq)'
 alias yrs='yay -Rs'
 alias ys='yay -S'
+
+#qemu
+qresparse(){
+	sudo mv $1 $1.bak
+	sudo qemu-img convert -O qcow2 $1.bak $1
+	sudo rm $1.bak
+}
+qresize(){
+	sudo qemu-img resize $1 $2
+}
 
 #mount
 alias mountusb='udisksctl mount -b /dev/sda1'
@@ -32,17 +59,22 @@ alias unmountusb='udisksctl unmount -b /dev/sda1'
 
 #disk
 alias cfdiskn='sudo cfdisk /dev/nvme0n1'
+alias duc='du -d 1 -h 2> /dev/null | sort -hr'
 
 # open files
 alias nv='nvim'
 alias snv='sudo nvim'
+alias em='emacs'
+alias sem='sudo emacs'
 alias bal='nvim ~/.bash_aliases'
 alias src='source ~/.bash_aliases'
 alias rc='nvim ~/.bashrc'
 alias xin='nvim ~/.xinitrc'
 alias history='cat ~/.bash_history'
 pdf(){
-	zathura "$1" & exit 
+	zathura "$1" & 
+	sleep 1
+	exit 
 }
 alias zat='zathura'
 
@@ -78,7 +110,7 @@ alias gpull='git pull'
 
 # network
 alias ncus='nmcli c up Sergeeva'
-alias ncuh='nmcli c up Hotspot'
+alias ncuh='nmcli c up Hot.spot'
 alias ncue='nmcli c up Ether'
 alias ncu='nmcli c up'
 alias ncds='nmcli c down Sergeeva'
@@ -93,6 +125,9 @@ alias ncone='nmcli --ask device ethernet connect'
 alias get='curl -i'
 alias getf='curl -O'
 
+#rss
+alias new='newsboat'
+
 # archive
 alias untar='tar -xvf'
 alias unzip='7z e'
@@ -100,6 +135,10 @@ alias unzip='7z e'
 # crypt
 alias rot13="tr 'A-Za-z0-9' 'N-ZA-Mn-za-m3-90-3'"
 
+#gdb
+alias gdb='gdb -q'
+
 # config
 complete -c sudo man which
 shopt -s autocd
+shopt -s extglob

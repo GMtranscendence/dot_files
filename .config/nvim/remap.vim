@@ -2,60 +2,101 @@
 let mapleader = ","
 let localleader = "<space>"
 
-" autocompletion "
+"i esc"
+inoremap jk <esc>
+inoremap <esc> <nop>
+
+"i autocompletion"
 inoremap " ""<left>
 inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap { {}<left>
 inoremap [ []<left>
+inoremap < <><left>
 
-"movement"
+
+"n folding"
+nnoremap fm zm
+nnoremap ffm zM
+nnoremap fo zo
+nnoremap ffo zO
+nnoremap fr zr
+nnoremap ffr zR
+nnoremap fc zc
+nnoremap ffc zC
+
+"i movement"
 inoremap <c-j> <down>
 inoremap <c-k> <up>
 inoremap <c-h> <left>
 inoremap <c-l> <right>
 
-"normal mode"
+"n upper lower"
 nnoremap + viwU
 nnoremap - viwu
-"nnoremap \" viw<esc>a\"<esc>hbi"<esc>lel
+
+"n wrapper"
+" so bad
+nnoremap " viw<esc>a"<esc>hbi"<esc>lel
 nnoremap ' viw<esc>a'<esc>hbi'<esc>lel
 nnoremap [ viw<esc>a]<esc>hbi[<esc>lel
 nnoremap { viw<esc>a}<esc>hbi{<esc>lel
 nnoremap ( viw<esc>a)<esc>hbi(<esc>lel
+
+"n comment"
 nnoremap # 0i#<esc>
+
+"n movement"
 nnoremap H 0
 nnoremap L $
 nnoremap K gg
 nnoremap J G
+
+"n lines"
 nnoremap <c-j> gJ
 nnoremap <c-k> kgJ
 nnoremap <c-h> kdd
 nnoremap <c-l> jddk
 
-"insert mode"
-inoremap \e' '
+"i dd"
 inoremap <c-d> <esc>ddi
+
+"i esc"
 inoremap jk <esc>
-inoremap <c-u> <esc>2lbviwUi
-inoremap <c-w> <esc>2lbviwdi
-inoremap <c-p> {<cr>}<esc>ko
 
-"visual mode"
-vnoremap <leader>c I#<esc>
-vnoremap # I#<esc>
+"i func"
+inoremap <c-p> (){<cr>}<esc>ko
+
+"vin split"
+inoremap <c-w> <esc><c-w><c-w>
+nnoremap <c-w> <c-w><c-w>
+vnoremap <c-w> <c-w><c-w>
+
+"v comment"
+vnoremap # :s/^/#/<cr>
 vnoremap ( di()<esc>hp
+vnoremap [ di[]<esc>hp
+vnoremap { di{}<esc>hp
+vnoremap ' di''<esc>hp
+vnoremap " di""<esc>hp
+vnoremap < di<><esc>hp
 
-" tab "
+"n tab"
 noremap <tab> >>
 noremap <s-tab> <<
 
-"initrc"
+"n conf"
 nnoremap <leader>sv :source ~/.config/nvim/remap.vim<cr>
 nnoremap <leader>ev :vsplit ~/.config/nvim/remap.vim<cr>
 nnoremap <leader>co :vsplit ~/.config/nvim/config.vim<cr>
 nnoremap <leader>pl :vsplit ~/.config/nvim/plugins.vim<cr>
 
+"n save or quit"
+nnoremap <leader>q :q!<cr>
+nnoremap <leader>w :w!<cr>
+nnoremap <leader>x :x!<cr>
+
+"n web"
 nnoremap <c-s> :w<cr> :!xdotool search --onlyvisible --class Firefox key F5<cr><cr>
 
 "abbrev"
@@ -68,4 +109,3 @@ autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellesca
 autocmd FileType c map <buffer> <F9> :w<CR>:exec '!gcc' shellescape(@%, 1)<CR>:!./a.out<cr>
 autocmd FileType c imap <buffer> <F9> <esc>:w<CR>:exec '!gcc' shellescape(@%, 1)<CR>:!./a.out<cr>
 autocmd BufNewFile *.html 0r /home/blank/.config/nvim/templates/html.skel
-nnoremap <leader>c I#<esc>
