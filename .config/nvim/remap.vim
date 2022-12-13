@@ -4,7 +4,6 @@ let localleader = "<space>"
 
 "i esc"
 inoremap jk <esc>
-inoremap <esc> <nop>
 
 "i autocompletion"
 inoremap " ""<left>
@@ -24,6 +23,8 @@ nnoremap fr zr
 nnoremap ffr zR
 nnoremap fc zc
 nnoremap ffc zC
+autocmd FileType python vnoremap <buffer> f{ c<esc>0i#{{{<cr><esc>:set paste<cr>a<c-r>"<esc>:set nopaste<cr>a#}}}<esc>k$
+autocmd FileType asm vnoremap <buffer> f{ c<esc>0i;{{{<cr><esc>:set paste<cr>a<c-r>"<esc>:set nopaste<cr>a;}}}<esc>k$
 
 "i movement"
 inoremap <c-j> <down>
@@ -71,6 +72,9 @@ inoremap <c-p> (){<cr>}<esc>ko
 inoremap <c-w> <esc><c-w><c-w>
 nnoremap <c-w> <c-w><c-w>
 vnoremap <c-w> <c-w><c-w>
+nnoremap == <c-w>=
+vnoremap == <c-w>=
+
 
 "v comment"
 vnoremap # :s/^/#/<cr>
@@ -99,13 +103,17 @@ nnoremap <leader>x :x!<cr>
 "n web"
 nnoremap <c-s> :w<cr> :!xdotool search --onlyvisible --class Firefox key F5<cr><cr>
 
+"gdb debugging"
+autocmd filetype asm nnoremap <F6> :Termdebug %:r<CR><c-w>2j<c-w>L<c-w><c-w><c-w><c-w>:q!<cr>
+
 "abbrev"
 iabbrev __name if __name__ == <c-v>'__main__<c-v>':<cr><tab>main(<right>
 
 "autocmd"
 autocmd FileType python nnoremap <buffer> <leader>c I#<esc>
-autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-autocmd FileType c map <buffer> <F9> :w<CR>:exec '!gcc' shellescape(@%, 1)<CR>:!./a.out<cr>
-autocmd FileType c imap <buffer> <F9> <esc>:w<CR>:exec '!gcc' shellescape(@%, 1)<CR>:!./a.out<cr>
+autocmd FileType python noremap <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python inoremap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType c nomap <buffer> <F9> :w<CR>:exec '!gcc' shellescape(@%, 1)<CR>:!./a.out<cr>
+autocmd FileType c inoremap <buffer> <F9> <esc>:w<CR>:exec '!gcc' shellescape(@%, 1)<CR>:!./a.out<cr>
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd BufNewFile *.html 0r /home/blank/.config/nvim/templates/html.skel

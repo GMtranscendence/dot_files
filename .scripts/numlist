@@ -1,0 +1,9 @@
+#!/bin/bash
+for i in $(seq $1 $2)
+do
+	if [ $i = $1 ]; then
+		echo "$i" > ~/hack/wordlists/nums$1-$2
+	else
+		echo "$i" >> ~/hack/wordlists/nums$1-$2
+	fi
+done

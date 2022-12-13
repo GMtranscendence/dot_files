@@ -1,0 +1,2 @@
+#!/bin/bash
+ip a |grep inet.*$1 |cut -d' ' -f 6

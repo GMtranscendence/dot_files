@@ -138,6 +138,9 @@ alias rot13="tr 'A-Za-z0-9' 'N-ZA-Mn-za-m3-90-3'"
 #gdb
 alias gdb='gdb -q'
 
+#vpn
+alias svpn='sudo openvpn'
+
 # config
 complete -c sudo man which
 shopt -s autocd
