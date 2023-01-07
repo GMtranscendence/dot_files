@@ -4,6 +4,7 @@ let localleader = "<space>"
 
 "i esc"
 inoremap jk <esc>
+inoremap ол <esc>
 
 "i autocompletion"
 inoremap " ""<left>
@@ -11,8 +12,11 @@ inoremap ' ''<left>
 inoremap ( ()<left>
 inoremap { {}<left>
 inoremap [ []<left>
-inoremap < <><left>
+"inoremap < <><left>
 
+"emmet"
+let g:user_emmet_leader_key=","
+"let g:user_emmet_mode="n"
 
 "n folding"
 nnoremap fm zm
@@ -23,6 +27,7 @@ nnoremap fr zr
 nnoremap ffr zR
 nnoremap fc zc
 nnoremap ffc zC
+autocmd BufRead * vnoremap <buffer> f{ c<esc>0i;{{{<cr><esc>:set paste<cr>a<c-r>"<esc>:set nopaste<cr>a;}}}<esc>k$
 autocmd FileType python vnoremap <buffer> f{ c<esc>0i#{{{<cr><esc>:set paste<cr>a<c-r>"<esc>:set nopaste<cr>a#}}}<esc>k$
 autocmd FileType asm vnoremap <buffer> f{ c<esc>0i;{{{<cr><esc>:set paste<cr>a<c-r>"<esc>:set nopaste<cr>a;}}}<esc>k$
 
@@ -52,12 +57,16 @@ nnoremap H 0
 nnoremap L $
 nnoremap K gg
 nnoremap J G
+vnoremap K gg
+vnoremap J G
 
 "n lines"
 nnoremap <c-j> gJ
 nnoremap <c-k> kgJ
 nnoremap <c-h> kdd
 nnoremap <c-l> jddk
+nnoremap <leader>O O<esc>j
+nnoremap <leader>o o<esc>k
 
 "i dd"
 inoremap <c-d> <esc>ddi
@@ -66,7 +75,7 @@ inoremap <c-d> <esc>ddi
 inoremap jk <esc>
 
 "i func"
-inoremap <c-p> (){<cr>}<esc>ko
+inoremap <c-p> {<cr>}<esc>ko
 
 "vin split"
 inoremap <c-w> <esc><c-w><c-w>
@@ -100,6 +109,14 @@ nnoremap <leader>q :q!<cr>
 nnoremap <leader>w :w!<cr>
 nnoremap <leader>x :x!<cr>
 
+"clear highlight after search"
+inoremap <leader>c <esc>:let @/ = ""<cr>
+nnoremap <leader>c :let @/ = ""<cr>
+vnoremap <leader>c :let @/ = ""<cr>
+
+"nerdtree"
+nnoremap <c-f> :NERDTreeToggle<cr>
+
 "n web"
 nnoremap <c-s> :w<cr> :!xdotool search --onlyvisible --class Firefox key F5<cr><cr>
 
@@ -113,7 +130,10 @@ iabbrev __name if __name__ == <c-v>'__main__<c-v>':<cr><tab>main(<right>
 autocmd FileType python nnoremap <buffer> <leader>c I#<esc>
 autocmd FileType python noremap <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python inoremap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType *.html noremap <buffer> <F9> :w<CR>:exec '!xdg-open' shellescape(@%, 1)<CR>
+autocmd FileType *.html inoremap <buffer> <F9> <esc>:w<CR>:exec '!xdg-open' shellescape(@%, 1)<CR>
 autocmd FileType c nomap <buffer> <F9> :w<CR>:exec '!gcc' shellescape(@%, 1)<CR>:!./a.out<cr>
 autocmd FileType c inoremap <buffer> <F9> <esc>:w<CR>:exec '!gcc' shellescape(@%, 1)<CR>:!./a.out<cr>
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd BufNewFile *.html 0r /home/blank/.config/nvim/templates/html.skel
+autocmd BufNewFile *.php 0r /home/blank/.config/nvim/templates/php.skel

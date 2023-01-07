@@ -5,6 +5,7 @@ alias ll='ls -lh'
 alias lls='ls -lsh'
 alias la='l -lAh'
 alias c='clear'
+alias srm='sudo rm'
 repp(){
 	range=$(seq $1)
 	shift 1
@@ -28,6 +29,9 @@ alias venv='python -m venv venv; pip install neovim > /dev/null'
 alias pipi='pip install'
 alias pyserver='python -m http.server'
 
+#php
+alias phpserver='php -S localhost:8000'
+
 # pacman
 alias spu='sudo pacman -Syu'
 alias sps='sudo pacman -Sy'
@@ -50,7 +54,12 @@ qresparse(){
 	sudo rm $1.bak
 }
 qresize(){
-	sudo qemu-img resize $1 $2
+	sudo qemu-img resize "$1" "$2"
+}
+qconvert(){
+	sudo qemu-img convert -f vmdk "$1" "$2.temp" &&
+	sudo qemu-img convert -O qcow2 "$2.temp" "$2" &&
+	sudo rm "$2.temp"
 }
 
 #mount
@@ -114,11 +123,13 @@ alias ncuh='nmcli c up Hot.spot'
 alias ncue='nmcli c up Ether'
 alias ncu='nmcli c up'
 alias ncds='nmcli c down Sergeeva'
-alias ncdh='nmcli c down Hotspot'
+alias ncdh='nmcli c down Hot.spot'
 alias ncde='nmcli c down Ether'
 alias ncd='nmcli c down'
 alias nscan='nmcli device wifi list'
 alias nconw='nmcli --ask device wifi connect'
+alias nconwso='nmcli --ask device wifi connect "SOFIA MALL"'
+alias nconwsi='nmcli --ask device wifi connect SilpoLovesYou'
 alias ncone='nmcli --ask device ethernet connect'
 
 # web
@@ -130,7 +141,8 @@ alias new='newsboat'
 
 # archive
 alias untar='tar -xvf'
-alias unzip='7z e'
+alias unzip='7z x'
+alias unrar='unrar x'
 
 # crypt
 alias rot13="tr 'A-Za-z0-9' 'N-ZA-Mn-za-m3-90-3'"
@@ -141,7 +153,14 @@ alias gdb='gdb -q'
 #vpn
 alias svpn='sudo openvpn'
 
+# mpv
+alias mpvs='mpv --shuffle'
+alias mpvsl='mpv --shuffle --volume=20'
+alias mpvslnv='mpv --shuffle --volume=20 --no-video'
+alias mpvslna='mpv --shuffle --volume=20 --no-audio'
+
 # config
+alias sudo='sudo '
 complete -c sudo man which
 shopt -s autocd
 shopt -s extglob

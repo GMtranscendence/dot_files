@@ -11,5 +11,9 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     Plug 'Yggdroot/indentLine'
     " Autocompletion"
     Plug 'ycm-core/YouCompleteMe'
+    "Indentation for html in php"
+    Plug 'captbaritone/better-indent-support-for-php-with-html'
+    "Tag surronding"
+    Plug 'tpope/vim-surround'
 call plug#end()
 
