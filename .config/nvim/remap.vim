@@ -18,6 +18,9 @@ inoremap [ []<left>
 let g:user_emmet_leader_key=","
 "let g:user_emmet_mode="n"
 
+"let g stuff"
+let g:neocomplete#enable_at_startup = 1
+
 "n folding"
 nnoremap fm zm
 nnoremap ffm zM
@@ -110,9 +113,9 @@ nnoremap <leader>w :w!<cr>
 nnoremap <leader>x :x!<cr>
 
 "clear highlight after search"
-inoremap <leader>c <esc>:let @/ = ""<cr>
-nnoremap <leader>c :let @/ = ""<cr>
-vnoremap <leader>c :let @/ = ""<cr>
+inoremap <C-c> <esc>:noh<cr>
+nnoremap <C-c> :noh<cr>
+vnoremap <C-c> :noh<cr>
 
 "nerdtree"
 nnoremap <c-f> :NERDTreeToggle<cr>
@@ -132,8 +135,9 @@ autocmd FileType python noremap <buffer> <F9> :w<CR>:exec '!python3' shellescape
 autocmd FileType python inoremap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType *.html noremap <buffer> <F9> :w<CR>:exec '!xdg-open' shellescape(@%, 1)<CR>
 autocmd FileType *.html inoremap <buffer> <F9> <esc>:w<CR>:exec '!xdg-open' shellescape(@%, 1)<CR>
-autocmd FileType c nomap <buffer> <F9> :w<CR>:exec '!gcc' shellescape(@%, 1)<CR>:!./a.out<cr>
+autocmd FileType c noremap <buffer> <F9> :w<CR>:exec '!gcc' shellescape(@%, 1)<CR>:!./a.out<cr>
 autocmd FileType c inoremap <buffer> <F9> <esc>:w<CR>:exec '!gcc' shellescape(@%, 1)<CR>:!./a.out<cr>
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd BufNewFile *.py 0r /home/blank/.config/nvim/templates/python.skel
 autocmd BufNewFile *.html 0r /home/blank/.config/nvim/templates/html.skel
 autocmd BufNewFile *.php 0r /home/blank/.config/nvim/templates/php.skel

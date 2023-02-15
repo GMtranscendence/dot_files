@@ -10,7 +10,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
     "Indent line"
     Plug 'Yggdroot/indentLine'
     " Autocompletion"
-    Plug 'ycm-core/YouCompleteMe'
+    Plug 'ackyshake/VimCompletesMe'
     "Indentation for html in php"
     Plug 'captbaritone/better-indent-support-for-php-with-html'
     "Tag surronding"

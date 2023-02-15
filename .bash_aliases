@@ -57,9 +57,7 @@ qresize(){
 	sudo qemu-img resize "$1" "$2"
 }
 qconvert(){
-	sudo qemu-img convert -f vmdk "$1" "$2.temp" &&
-	sudo qemu-img convert -O qcow2 "$2.temp" "$2" &&
-	sudo rm "$2.temp"
+	sudo qemu-img convert -f vmdk -O qcow2 "$1" "$2"
 }
 
 #mount
@@ -102,8 +100,12 @@ alias systop='sudo systemctl stop'
 alias sysen='sudo systemctl enable'
 alias systatus='sudo systemctl status'
 alias sysrestart='sudo systemctl restart'
+#############
+alias syslibvirtd='sudo systemctl start libvirtd'
 
 # git
+alias gcheck='git checkout'
+alias ginit='git init'
 alias gclone='git clone'
 alias gstat='git status'
 alias gbranch='git branch'
@@ -116,6 +118,7 @@ alias gdiff='git diff'
 alias glog='git log --oneline'
 alias gpush='git push'
 alias gpull='git pull'
+alias gmod='git add -u'
 
 # network
 alias ncus='nmcli c up Sergeeva'
