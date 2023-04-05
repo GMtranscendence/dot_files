@@ -1,4 +1,6 @@
 # terminal
+alias grep='grep --color=auto'
+alias less='less -R'
 alias ls='ls --color=auto'
 alias l='ls'
 alias ll='ls -lh'
@@ -24,9 +26,11 @@ rep(){
 #python
 alias act='source venv/bin/activate'
 alias deact='deactivate'
-alias py='python'
-alias venv='python -m venv venv; pip install neovim > /dev/null'
+alias py='ipython'
+alias venv='python -m venv venv; pip install neovim > /dev/null; source venv/bin/activate'
 alias pipi='pip install'
+alias pipu='pip uninstall'
+alias pipl='pip list'
 alias pyserver='python -m http.server'
 
 #php
@@ -100,8 +104,6 @@ alias systop='sudo systemctl stop'
 alias sysen='sudo systemctl enable'
 alias systatus='sudo systemctl status'
 alias sysrestart='sudo systemctl restart'
-#############
-alias syslibvirtd='sudo systemctl start libvirtd'
 
 # git
 alias gcheck='git checkout'
@@ -119,6 +121,8 @@ alias glog='git log --oneline'
 alias gpush='git push'
 alias gpull='git pull'
 alias gmod='git add -u'
+alias gstash='git stash'
+alias gpop='git stash pop'
 
 # network
 alias ncus='nmcli c up Sergeeva'
@@ -138,6 +142,10 @@ alias ncone='nmcli --ask device ethernet connect'
 # web
 alias get='curl -i'
 alias getf='curl -O'
+alias pubip="curl -s http://ifconfig.me/all | grep --color=never ip_addr | cut -d' ' -f 2"
+cheat(){
+	curl cheat.sh/$1 | less -R
+}
 
 #rss
 alias new='newsboat'
@@ -149,6 +157,15 @@ alias unrar='unrar x'
 
 # crypt
 alias rot13="tr 'A-Za-z0-9' 'N-ZA-Mn-za-m3-90-3'"
+b64d(){
+	echo "$1" | base64 -d
+}
+b64e(){
+	echo "$1" | base64
+}
+alias urldecode='python3 -c "import sys, urllib.parse as ul; print(ul.unquote_plus(sys.argv[1]))"'
+
+alias urlencode='python3 -c "import sys, urllib.parse as ul; print (ul.quote_plus(sys.argv[1]))"'
 
 #gdb
 alias gdb='gdb -q'
@@ -164,6 +181,6 @@ alias mpvslna='mpv --shuffle --volume=20 --no-audio'
 
 # config
 alias sudo='sudo '
-complete -c sudo man which
+complete -c sudo man which openvpn
 shopt -s autocd
 shopt -s extglob

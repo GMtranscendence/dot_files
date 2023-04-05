@@ -2,9 +2,15 @@
 let mapleader = ","
 let localleader = "<space>"
 
+"term"
+tnoremap <c-n> <c-\><c-n>
+tnoremap <c-e> exit<cr><cr>
+
+"term start"
+nnoremap <leader>te :term<cr>
+
 "i esc"
 inoremap jk <esc>
-inoremap ол <esc>
 
 "i autocompletion"
 inoremap " ""<left>
@@ -13,6 +19,9 @@ inoremap ( ()<left>
 inoremap { {}<left>
 inoremap [ []<left>
 "inoremap < <><left>
+
+"buffers"
+nnoremap <leader>l :ls<cr>:b<space>
 
 "emmet"
 let g:user_emmet_leader_key=","
@@ -30,7 +39,7 @@ nnoremap fr zr
 nnoremap ffr zR
 nnoremap fc zc
 nnoremap ffc zC
-autocmd BufRead * vnoremap <buffer> f{ c<esc>0i;{{{<cr><esc>:set paste<cr>a<c-r>"<esc>:set nopaste<cr>a;}}}<esc>k$
+autocmd BufRead * vnoremap <buffer> f{ c<esc>0i{{{<cr><esc>:set paste<cr>a<c-r>"<esc>:set nopaste<cr>a}}}<esc>k$
 autocmd FileType python vnoremap <buffer> f{ c<esc>0i#{{{<cr><esc>:set paste<cr>a<c-r>"<esc>:set nopaste<cr>a#}}}<esc>k$
 autocmd FileType asm vnoremap <buffer> f{ c<esc>0i;{{{<cr><esc>:set paste<cr>a<c-r>"<esc>:set nopaste<cr>a;}}}<esc>k$
 
@@ -117,6 +126,10 @@ inoremap <C-c> <esc>:noh<cr>
 nnoremap <C-c> :noh<cr>
 vnoremap <C-c> :noh<cr>
 
+"backspace fix"
+"inoremap <c-h> <bs>
+
+
 "nerdtree"
 nnoremap <c-f> :NERDTreeToggle<cr>
 
@@ -133,10 +146,13 @@ iabbrev __name if __name__ == <c-v>'__main__<c-v>':<cr><tab>main(<right>
 autocmd FileType python nnoremap <buffer> <leader>c I#<esc>
 autocmd FileType python noremap <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python inoremap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python nnoremap <buffer> <leader>de oset_trace()<esc>ggOfrom pudb import set_trace<esc><c-o>
 autocmd FileType *.html noremap <buffer> <F9> :w<CR>:exec '!xdg-open' shellescape(@%, 1)<CR>
 autocmd FileType *.html inoremap <buffer> <F9> <esc>:w<CR>:exec '!xdg-open' shellescape(@%, 1)<CR>
 autocmd FileType c noremap <buffer> <F9> :w<CR>:exec '!gcc' shellescape(@%, 1)<CR>:!./a.out<cr>
 autocmd FileType c inoremap <buffer> <F9> <esc>:w<CR>:exec '!gcc' shellescape(@%, 1)<CR>:!./a.out<cr>
+autocmd FileType cpp noremap <buffer> <F9> :w<CR>:exec '!g++' shellescape(@%, 1)<CR>:!./a.out<cr>
+autocmd FileType cpp inoremap <buffer> <F9> <esc>:w<CR>:exec '!g++' shellescape(@%, 1)<CR>:!./a.out<cr>
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd BufNewFile *.py 0r /home/blank/.config/nvim/templates/python.skel
 autocmd BufNewFile *.html 0r /home/blank/.config/nvim/templates/html.skel
