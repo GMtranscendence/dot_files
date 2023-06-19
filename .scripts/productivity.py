@@ -2,8 +2,8 @@
 
 from sys import exit
 from os import popen, system, path
+import os
 import shelve
-import pickle
 import time
 
 db_path = path.dirname(path.realpath(__file__)) + '/work_time.txt'
@@ -31,29 +31,30 @@ def print_help(modes, mode_description, current_mode=None):
 
 
 def timer():
-    import time
-    # Timer starts
-    starttime = time.time()
-    lasttime = starttime
-    lapnum = 1
-    value = ""
-    print("Press ENTER for each lap.\nType Q and press ENTER to stop.")
-    while value.lower() != "q":
-        # Input for the ENTER key press
-        value = input()
-        # The current lap-time
-        laptime = round((time.time() - lasttime), 2)
-        # Total time elapsed since the timer started
-        totaltime = round((time.time() - starttime), 2)
-        # Printing the lap number, lap-time, and total time
-        print("Lap No. "+str(lapnum))
-        print("Total Time: "+str(totaltime))
-        print("Lap Time: "+str(laptime))
-        print("*"*20)
-        # Updating the previous total time and lap number
-        lasttime = time.time()
-        lapnum += 1
-    print("Exercise complete!")
+    minutes = float(input('How much time do you want to study (in minutes): '))
+    seconds = minutes * 60
+
+    # start the timer
+    start_time = time.time()
+    end_time = start_time + seconds
+
+    # loop until the timer ends
+    while time.time() < end_time:
+        try:
+            time_left_seconds = end_time - time.time()
+            time_left_minutes, time_left_seconds = divmod(time_left_seconds, 60)
+            time_left_hours, time_left_minutes = divmod(time_left_minutes, 60)
+            print(f'Time left: {int(time_left_hours):02d}:' +
+                               f'{int(time_left_minutes):02d}:' +
+                               f'{int(time_left_seconds):02d}\r', end='')
+            time.sleep(1)
+        except KeyboardInterrupt:
+            print(f'\nStudied for {(time.time() - start_time)/60:.2f} minutes. Stopping...')
+            return
+
+
+    print("\nTimer finished!")
+    system('mpv --no-video --really-quiet ' + os.path.dirname(os.path.realpath(__file__)) + '/test.mp3 &')
 
 
 def info():
@@ -148,9 +149,10 @@ def main():
         'timer': 0, 't': 0,
         'info': 1, 'i': 1,
         'help': 2, 'h': 2,
-        'exit': 3, 'e': 3
+        'exit': 3, 'e': 3,
+        'clear': 4, 'c': 4
     }
-    mode_desc = ['for measuring productivity time', 'display information about your study sessions', 'display this message', 'exit the program']
+    mode_desc = ['for measuring productivity time', 'display information about your study sessions', 'display this message', 'exit the program', 'clear the terminal']
     print_help(modes, mode_desc)
     while True:
         try:
@@ -165,6 +167,8 @@ def main():
             elif mode == 3:
                 print('\n[*] EXITING\n')
                 exit()
+            elif mode == 4:
+                system('clear')
             else:
                 print('[*] Unknown option')
 

@@ -1,5 +1,4 @@
 #!/bin/bash
-./asm
 nasm -f elf64 -o object.o $1 &&
 ld object.o -o a.out &&
 rm object.o &&

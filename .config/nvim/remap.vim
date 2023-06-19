@@ -2,6 +2,10 @@
 let mapleader = ","
 let localleader = "<space>"
 
+"conceal level"
+nnoremap <leader>sc0 :set cole=0<cr>
+nnoremap <leader>sc2 :set cole=2<cr>
+
 "term"
 tnoremap <c-n> <c-\><c-n>
 tnoremap <c-e> exit<cr><cr>
@@ -26,6 +30,9 @@ nnoremap <leader>l :ls<cr>:b<space>
 "emmet"
 let g:user_emmet_leader_key=","
 "let g:user_emmet_mode="n"
+
+"md"
+let g:vim_markdown_folding_disabled = 1
 
 "let g stuff"
 let g:neocomplete#enable_at_startup = 1
@@ -67,10 +74,6 @@ nnoremap # 0i#<esc>
 "n movement"
 nnoremap H 0
 nnoremap L $
-nnoremap K gg
-nnoremap J G
-vnoremap K gg
-vnoremap J G
 
 "n lines"
 nnoremap <c-j> gJ
@@ -129,31 +132,38 @@ vnoremap <C-c> :noh<cr>
 "backspace fix"
 "inoremap <c-h> <bs>
 
+"latex"
+nnoremap <leader>tp :!pdflatex % && zathura resume.pdf<cr>
 
 "nerdtree"
-nnoremap <c-f> :NERDTreeToggle<cr>
+nnoremap <c-f> :FZF<cr>
 
 "n web"
 nnoremap <c-s> :w<cr> :!xdotool search --onlyvisible --class Firefox key F5<cr><cr>
 
 "gdb debugging"
-autocmd filetype asm nnoremap <F6> :Termdebug %:r<CR><c-w>2j<c-w>L<c-w><c-w><c-w><c-w>:q!<cr>
+autocmd filetype asm nnoremap <F6> :Termdebug %:r<cr><c-w>2j<c-w>L<c-w><c-w><c-w><c-w>:q!<cr>
 
 "abbrev"
 iabbrev __name if __name__ == <c-v>'__main__<c-v>':<cr><tab>main(<right>
 
 "autocmd"
 autocmd FileType python nnoremap <buffer> <leader>c I#<esc>
-autocmd FileType python noremap <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-autocmd FileType python inoremap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+autocmd FileType python noremap <buffer> <F9> :w<cr>:exec '!python3' shellescape(@%, 1)<cr>
+autocmd FileType python inoremap <buffer> <F9> <esc>:w<cr>:exec '!python3' shellescape(@%, 1)<cr>
 autocmd FileType python nnoremap <buffer> <leader>de oset_trace()<esc>ggOfrom pudb import set_trace<esc><c-o>
-autocmd FileType *.html noremap <buffer> <F9> :w<CR>:exec '!xdg-open' shellescape(@%, 1)<CR>
-autocmd FileType *.html inoremap <buffer> <F9> <esc>:w<CR>:exec '!xdg-open' shellescape(@%, 1)<CR>
-autocmd FileType c noremap <buffer> <F9> :w<CR>:exec '!gcc' shellescape(@%, 1)<CR>:!./a.out<cr>
-autocmd FileType c inoremap <buffer> <F9> <esc>:w<CR>:exec '!gcc' shellescape(@%, 1)<CR>:!./a.out<cr>
-autocmd FileType cpp noremap <buffer> <F9> :w<CR>:exec '!g++' shellescape(@%, 1)<CR>:!./a.out<cr>
-autocmd FileType cpp inoremap <buffer> <F9> <esc>:w<CR>:exec '!g++' shellescape(@%, 1)<CR>:!./a.out<cr>
+autocmd FileType *.html noremap <buffer> <F9> :w<cr>:exec '!xdg-open' shellescape(@%, 1)<cr>
+autocmd FileType *.html inoremap <buffer> <F9> <esc>:w<cr>:exec '!xdg-open' shellescape(@%, 1)<cr>
+autocmd FileType c nnoremap <buffer> <F9> :w<cr>:exec '!gcc' shellescape(@%, 1)<cr>:!./a.out<cr>
+autocmd FileType c inoremap <buffer> <F9> <esc>:w<cr>:exec '!gcc' shellescape(@%, 1)<cr>:!./a.out<cr>
+autocmd FileType cpp nnoremap <buffer> <F9> :w<cr>:exec '!g++' shellescape(@%, 1)<cr>:!./a.out<cr>
+autocmd FileType cpp inoremap <buffer> <F9> <esc>:w<cr>:exec '!g++' shellescape(@%, 1)<cr>:!./a.out<cr>
+autocmd FileType rust nnoremap <buffer> <F9> :w<cr>:exec '!cargo run'<cr>
+autocmd FileType rust inoremap <buffer> <F9> <esc>:w<cr>:exec '!cargo run'<cr>
+autocmd FileType rmd nnoremap <buffer> <F9> :w<cr>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<cr>
+autocmd FileType rmd inoremap <buffer> <F9> <esc>:w<cr>:!echo<space>"require(rmarkdown);<space>render('<c-r>%')"<space>\|<space>R<space>--vanilla<cr>
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd BufNewFile *.py 0r /home/blank/.config/nvim/templates/python.skel
+autocmd BufNewFile *.rmd 0r /home/blank/.config/nvim/templates/rmd.skel
 autocmd BufNewFile *.html 0r /home/blank/.config/nvim/templates/html.skel
 autocmd BufNewFile *.php 0r /home/blank/.config/nvim/templates/php.skel
